@@ -36,7 +36,7 @@ function getPosts(page = 1) {
         }
 
         const content = `
-          <div class="d-md-flex justify-content-center mb-5">
+          <div class="d-md-flex justify-content-center mt-5">
             <div class="col-sm-12 col-md-9">
               <div class="card shadow-sm">
                 <div class="card-header bg-transparent d-flex align-items-center gap-2 position-relative">
@@ -45,7 +45,7 @@ function getPosts(page = 1) {
                 <img src="${
                   post.author.profile_image
                 }" alt="user" width="50px" height="50px" class="border border-2 rounded-circle p-1 cursor-pointer">
-                  <span class="text-decoration-none text-black fw-bold user-select-none cursor-pointer">@${
+                  <span class="text-decoration-none fw-bold user-select-none cursor-pointer">@${
                     post.author.username
                   }
                   </span>

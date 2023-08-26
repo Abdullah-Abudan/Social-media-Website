@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,14 @@
     <!-- Import Custom CSS -->
     <link rel="stylesheet" href="../style.css">
 </head>
+
 <body>
+    <!-- Start Dark & Light Mode -->
+    <div class="form-check form-switch position-fixed end-0" style="z-index: 2222; top:75px;">
+        <input class="form-check-input p-2 shadow-none cursor-pointer" type="checkbox" role="switch" id="themeSwitch" onclick="toggleTheme()" />
+    </div>
+    <!-- End Dark & Light Mode -->
+
     <!-- Start Loader  -->
     <div id="loader"
         class="position-fixed start-0 end-0 top-0 bottom-0 d-flex justify-content-center align-items-center"
@@ -111,7 +119,7 @@
     <div class="container mh-100 p-0 mt-md-2 mb-md-5">
         <div class="d-md-flex justify-content-center">
             <div class="col-sm-12 col-md-9">
-                <nav class="navbar navbar-expand-md bg-light shadow rounded py-3">
+                <nav id="navbar" class="navbar navbar-expand-md shadow rounded py-3">
                     <div class="container-fluid">
                         <a class="navbar-brand" href="../Home/Home.html">Social Media</a>
                         <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
@@ -138,7 +146,7 @@
                                     <!-- User Image -->
                                     <div class="d-flex align-items-center gap-4 gap-md-2">
                                         <img id="nav-image" onclick="profileClicked()"
-                                            class="rounded-circle cursor-pointer" alt="user" width="40" height="40">
+                                            class="rounded-circle cursor-pointer border border-2 p-1" alt="user" width="55" height="55">
                                         <!-- User Name -->
                                         <strong id="nav-username" onclick="profileClicked()"
                                             class="cursor-pointer"></strong>
@@ -152,7 +160,7 @@
                     </div>
                 </nav>
             </div>
-        </div>  
+        </div>
     </div>
     <!-- End Nav Bar Container -->
 

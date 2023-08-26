@@ -17,10 +17,11 @@ function Register(e) {
   data.append("password", password);
   data.append("image", Image);
 
-  ToggleLoader(true)
-  axios.post(`${BASE_URL}/register`, data)
+  ToggleLoader(true);
+  axios
+    .post(`${BASE_URL}/register`, data)
     .then((res) => {
-      ToggleLoader(false)
+      ToggleLoader(false);
       console.log(res);
       const { token, user } = res.data; // Object Destructuring
       localStorage.token = token;
@@ -43,9 +44,9 @@ function Register(e) {
     .catch((error) => {
       ShowToast("error", "text-danger", error.response.data.message);
     })
-    .finally(()=> {
-      ToggleLoader(false)
-    })
+    .finally(() => {
+      ToggleLoader(false);
+    });
 }
 
 // Login Function
@@ -57,10 +58,11 @@ function Login(e) {
     username: username,
     password: password,
   };
-  ToggleLoader(true)
-  axios.post(`${BASE_URL}/login`, data)
+  ToggleLoader(true);
+  axios
+    .post(`${BASE_URL}/login`, data)
     .then((res) => {
-      ToggleLoader(false)
+      ToggleLoader(false);
       let token = res.data.token;
       localStorage.token = token;
       let user = res.data.user;
@@ -78,15 +80,15 @@ function Login(e) {
       ShowToast("login", "text-success");
       SetupUI();
       setTimeout(() => {
-        location.reload()
+        location.reload();
       }, 1500);
     })
     .catch((error) => {
       ShowToast("error", "text-danger", error.response.data.message);
     })
-    .finally(()=> {
-      ToggleLoader(false)
-    })
+    .finally(() => {
+      ToggleLoader(false);
+    });
 }
 
 // Logout Function
@@ -95,7 +97,7 @@ function Logout() {
   ShowToast("logout", "text-danger");
   SetupUI();
   setTimeout(() => {
-    location.reload()
+    location.reload();
   }, 1500);
 }
 
@@ -113,18 +115,18 @@ function SetupUI() {
   const logoutBtn = document.getElementById("logout-btn");
   const addPostBtn = document.getElementById("add-post");
   const userInfo = document.getElementById("user-info");
-  const navUsername = document.getElementById("nav-username")
-  const navImage = document.getElementById("nav-image")
+  const navUsername = document.getElementById("nav-username");
+  const navImage = document.getElementById("nav-image");
   const addCommentDiv = document.getElementById("add-comments-div");
   const editPostBtn = document.getElementById("edit-post");
-
 
   // User is Guest (Not Logged in)
   if (token == null) {
     loginBtn.style.display = "inline";
     registerBtn.style.display = "inline";
     logoutBtn.style.display = "none";
-    if (addPostBtn != null ||editPostBtn != null) { // للتأكد من انه موجودة بالصفحة 
+    if (addPostBtn != null || editPostBtn != null) {
+      // للتأكد من انه موجودة بالصفحة
       // because he not exists in post Details
       addPostBtn.style.display = "none";
     }
@@ -142,10 +144,9 @@ function SetupUI() {
     if (addPostBtn != null || editPostBtn != null) {
       addPostBtn.style.display = "inline";
     }
-      userInfo.style.display = "flex";
-      navUsername.innerHTML = GetCurrentUser().username;
-      navImage.src = GetCurrentUser().profile_image;
-    
+    userInfo.style.display = "flex";
+    navUsername.innerHTML = GetCurrentUser().username;
+    navImage.src = GetCurrentUser().profile_image;
 
     if (addCommentDiv != null) {
       addCommentDiv.style.setProperty("display", "flex", "important");
@@ -225,10 +226,11 @@ function CreateUpdatePost(e) {
 
   if (isCreate) {
     URL = `${BASE_URL}/posts`;
-    ToggleLoader(true)
-    axios.post(URL, bodyFormData, { headers })
+    ToggleLoader(true);
+    axios
+      .post(URL, bodyFormData, { headers })
       .then((res) => {
-        ToggleLoader(false)
+        ToggleLoader(false);
         console.log(res);
         // Start steps to hide the modal
         const modal = document.getElementById("post-modal");
@@ -238,24 +240,24 @@ function CreateUpdatePost(e) {
 
         // show an alert after the token is storage successfully
         ShowToast("add-post", "text-success");
-        setTimeout(()=>{
-          location.reload(); 
-        },1000)
-
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
       })
       .catch((error) => {
         ShowToast("error", "text-danger", error.response.data.message);
       })
-      .finally(()=> {
-        ToggleLoader(false)
-      })
+      .finally(() => {
+        ToggleLoader(false);
+      });
   } else {
     bodyFormData.append("_method", "put");
     URL = `${BASE_URL}/posts/${postId}`;
-    ToggleLoader(true)
-    axios.post(URL, bodyFormData, { headers })
+    ToggleLoader(true);
+    axios
+      .post(URL, bodyFormData, { headers })
       .then((res) => {
-        ToggleLoader(false)
+        ToggleLoader(false);
         console.log(res);
         // Start steps to hide the modal
         const modal = document.getElementById("post-modal");
@@ -266,16 +268,16 @@ function CreateUpdatePost(e) {
         // show an alert after the token is storage successfully
         ShowToast("edit-post", "text-success");
         // Update posts list immediately after creating a new post
-        setTimeout(()=>{
-          location.reload(); 
-        },1000)
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
       })
       .catch((error) => {
         ShowToast("error", "text-danger", error.response.data.message);
       })
-      .finally(()=> {
-        ToggleLoader(false)
-      })
+      .finally(() => {
+        ToggleLoader(false);
+      });
   }
 }
 
@@ -303,41 +305,62 @@ const EditPost = (postString) => {
 
 // Delete Post Function for modal
 const DeletePost = () => {
-  const postId =  document.getElementById("data-post-id").dataset.postId
+  const postId = document.getElementById("data-post-id").dataset.postId;
 
   const token = localStorage.token;
   let URL = ``;
   const headers = { Authorization: `Bearer ${token}` };
-    URL = `${BASE_URL}/posts/${postId}`;
-    ToggleLoader(true)
-    axios.delete(URL, { headers })
-      .then((res) => {
-        ToggleLoader(false)
-        console.log(res);
-        ShowToast("delete-post", "text-danger");
-        setTimeout(()=>{
-          location.reload(); 
-        },1000)
-      })
-      .catch((error) => {
-        ShowToast("error", "text-danger", error.response.data.message);
-      })
-      .finally(()=> {
-        ToggleLoader(false)
-      })
-    }
-
+  URL = `${BASE_URL}/posts/${postId}`;
+  ToggleLoader(true);
+  axios
+    .delete(URL, { headers })
+    .then((res) => {
+      ToggleLoader(false);
+      console.log(res);
+      ShowToast("delete-post", "text-danger");
+      setTimeout(() => {
+        location.reload();
+      }, 1000);
+    })
+    .catch((error) => {
+      ShowToast("error", "text-danger", error.response.data.message);
+    })
+    .finally(() => {
+      ToggleLoader(false);
+    });
+};
 
 function profileClicked() {
-  location.href = `../Profile/profile.html?userId=${GetCurrentUser().id}`
-}    
+  location.href = `../Profile/profile.html?userId=${GetCurrentUser().id}`;
+}
 
 // Loader Function
 function ToggleLoader(show = true) {
-  if(show) {
-    document.getElementById("loader").style.visibility = "visible"
-  } 
-  else {
-    document.getElementById("loader").style.visibility = "hidden"
+  if (show) {
+    document.getElementById("loader").style.visibility = "visible";
+  } else {
+    document.getElementById("loader").style.visibility = "hidden";
   }
+}
+
+// Dark & Light Function
+function toggleTheme() {
+  const htmlElement = document.documentElement;
+  const bodyElement = document.body;
+  const navElement = document.getElementById("navbar");
+  const addPost = document.getElementById("svg-addBtn");
+  const currentTheme = htmlElement.dataset.bsTheme || "light";
+  const newTheme = currentTheme === "light" ? "dark" : "light";
+
+  htmlElement.dataset.bsTheme = newTheme;
+
+  localStorage.setItem("theme", newTheme);
+
+  bodyElement.style.backgroundColor =
+    newTheme === "dark" ? "#212529" : "#f0ecff";
+  navElement.style.backgroundColor =
+    newTheme === "dark" ? "#212529" : "rgb(248,249,250)";
+  navElement.style.border = newTheme === "dark" ? "1px solid #424549" : "";
+  addPost.style.backgroundColor =
+    newTheme === "dark" ? "rgb(33 37 41)" : "white";
 }

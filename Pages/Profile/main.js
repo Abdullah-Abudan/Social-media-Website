@@ -1,14 +1,14 @@
 function UserId() {
   const urlParams = new URLSearchParams(location.search);
   const userId = urlParams.get("userId"); // key in URL
-  return userId
+  return userId;
 }
 
 function getUsers(userId = UserId()) {
   axios
     .get(`${BASE_URL}/users/${userId}`)
     .then((res) => {
-      ToggleLoader(false)
+      ToggleLoader(false);
       const users = res.data.data;
       console.log(users);
       const content = `
@@ -18,7 +18,7 @@ function getUsers(userId = UserId()) {
               <div class="card shadow-sm mb-4">
                   <div class="card-body d-flex p-4">
                       <div class="row w-100">
-                          <div class="col-12 col-md-6 d-flex flex-row gap-3 gap-sm-5">
+                          <div class="col-12 col-lg-6 d-flex flex-row gap-3 gap-sm-5">
                               <!-- User Image -->
                               <div class="border border-3 rounded-circle">
                                   <img src="${users.profile_image}"
@@ -26,7 +26,7 @@ function getUsers(userId = UserId()) {
                               </div>
                               <!-- UserName & Email & Name -->
                               <div
-                                  class="d-flex flex-column flex-grow-1 flex-md-grow-0 justify-content-evenly align-items-center align-items-md-start ">
+                                  class="d-flex flex-column flex-grow-1 flex-lg-grow-0 justify-content-evenly align-items-center align-items-lg-start ">
                                   <h6>${users.username}</h6>
                                   <h6>${users.email}</h6>
                                   <h6>${users.name}</h6>
@@ -51,15 +51,14 @@ function getUsers(userId = UserId()) {
     })
     .catch((error) => {
       ShowToast("error", "text-danger", error.response.data.message);
-      ToggleLoader(false)
+      ToggleLoader(false);
     });
 }
 getUsers();
 
 function getPosts(userId = UserId()) {
-  axios.get(`${BASE_URL}/users/${userId}/posts`)
-  .then((res) => {
-    ToggleLoader(false)
+  axios.get(`${BASE_URL}/users/${userId}/posts`).then((res) => {
+    ToggleLoader(false);
     const posts = res.data.data;
     console.log(posts);
     posts.forEach((post) => {
@@ -104,7 +103,7 @@ function getPosts(userId = UserId()) {
                   <img src="${
                     post.author.profile_image
                   }" alt="user" width="50px" height="50px" class="border border-2 rounded-circle p-1">
-                  <span class="text-decoration-none text-black fw-bold user-select-none">
+                  <span class="text-decoration-none fw-bold user-select-none">
                   @${post.author.username}
                   </span>
                   

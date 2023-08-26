@@ -4,10 +4,12 @@
 .btn-close:focus {
   box-shadow: none;
 }
-body {
+/* body {
   background-color: #f0ecff;
 }
-
+nav.navbar {
+	background-color: rgb(248,249,250);
+} */
 .toasts-position {
   position: fixed;
   bottom: 10px;
@@ -22,7 +24,7 @@ body {
 .add-post {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 0px;
   background-color: transparent;
   border: 0;
 }
