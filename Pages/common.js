@@ -167,6 +167,9 @@ function ShowToast(action, color, error) {
   let message;
   const toastBody = toast.querySelector(".toast-body");
   switch (action) {
+    case "checkLogin":
+      message = "Please login first";
+      break;
     case "login":
       message = "Logged in Successfully";
       break;
@@ -331,7 +334,12 @@ const DeletePost = () => {
 };
 
 function profileClicked() {
-  location.href = `../Profile/profile.html?userId=${GetCurrentUser().id}`;
+  if(localStorage.getItem("token")) {
+    location.href = `../Profile/profile.html?userId=${GetCurrentUser().id}`;
+  }
+  else {
+    ShowToast("checkLogin", "text-danger")
+  }
 }
 
 // Loader Function
@@ -348,7 +356,7 @@ function toggleTheme() {
   const htmlElement = document.documentElement;
   const bodyElement = document.body;
   const navElement = document.getElementById("navbar");
-  const addPost = document.getElementById("svg-addBtn");
+  const commentElement = document.querySelectorAll("#comments>div");
   const currentTheme = htmlElement.dataset.bsTheme || "light";
   const newTheme = currentTheme === "light" ? "dark" : "light";
 
@@ -360,7 +368,11 @@ function toggleTheme() {
     newTheme === "dark" ? "#212529" : "#f0ecff";
   navElement.style.backgroundColor =
     newTheme === "dark" ? "#212529" : "rgb(248,249,250)";
-  navElement.style.border = newTheme === "dark" ? "1px solid #424549" : "";
-  addPost.style.backgroundColor =
-    newTheme === "dark" ? "rgb(33 37 41)" : "white";
+  commentElement.forEach((comment) => {
+    comment.style.backgroundColor =
+      newTheme === "dark" ? "rgb(47 50 53)" : "#f1f3fffc";
+  });
+}
+function scrollToTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 }

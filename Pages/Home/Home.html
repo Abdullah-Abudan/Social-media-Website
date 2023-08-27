@@ -118,7 +118,7 @@
   <div class="container mh-100 p-0 mt-md-2 mb-md-5">
     <div class="d-md-flex justify-content-center">
       <div class="col-sm-12 col-md-9">
-        <nav id="navbar" class="navbar navbar-expand-md shadow rounded py-3">
+        <nav id="navbar" class="navbar navbar-expand-md shadow rounded py-3 border">
           <div class="container-fluid">
             <a class="navbar-brand" href="./Home.html">Social Media</a>
             <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
@@ -173,13 +173,19 @@
 
   <!-- Start ADD Post Button -->
   <button class="add-post" id="add-post" onclick="CreatePost()">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" id="svg-addBtn" height="40" fill="#0d6efd"
-      class="bi bi-plus-circle rounded-circle" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" id="svg-addBtn" height="40" fill="#0d6efd" class="bi bi-plus-circle-fill rounded-circle" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
     </svg>
   </button>
   <!-- End ADD Post Button -->
+
+  <!-- Start Scroll To Top Button  -->
+  <button id="scrollToTopButton" class="scroll-to-top" onclick="scrollToTop()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up-circle-fill rounded-circle" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 0 0 8a8 8 0 0 0 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+    </svg>
+  </button>
+  <!-- End Scroll To Top Button  -->
 
   <!-- Start Create - Edit Post Modal -->
   <div class="modal fade" id="post-modal" data-bs-backdrop="static">

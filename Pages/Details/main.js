@@ -19,7 +19,7 @@ function getPostDetailes() {
               <img src="${
                 post.author.profile_image
               }" alt="user" width="50px" height="50px" class="border border-2 rounded-circle p-1">
-              <span class="text-decoration-none text-black fw-bold user-select-none">@${
+              <span class="text-decoration-none fw-bold user-select-none">@${
                 post.author.username
               }</span>
               </div>
@@ -53,7 +53,7 @@ function getPostDetailes() {
 
                             <div id="comments" class="d-flex flex-column gap-2">
                             ${post.comments?.map((comment) => `
-                              <div style="background-color:#f1f3fffc" class="p-2 d-flex flex-column gap-2 justify-content-center">
+                              <div class="p-2 d-flex flex-column gap-2 justify-content-center">
                                 <div class="d-flex align-items-center gap-2">
                                   <img id="comment-image" src="${comment.author.profile_image}" class="border border-2 border-secondary p-1 rounded-circle" alt="user" width="40" height="40">
                                   <strong id="comment-username">${comment.author.username}</strong>
