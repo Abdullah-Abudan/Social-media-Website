@@ -38,6 +38,9 @@ nav.navbar {
   border: 0;
   cursor: pointer;
 }
+#comments>div{
+  background-color: rgb(47 50 53);
+}
 .edit-post {
   position: absolute;
   top: 15px;
