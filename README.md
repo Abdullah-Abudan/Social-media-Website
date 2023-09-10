@@ -9,4 +9,4 @@ Social Media website using Bootstrap, JavaScript, Axios, Postman
 </div>
 
 ### Video:
-[![Project video](https://github.com/Abdullah-Abudan/Social-media-Website/assets/92273202/81669fb4-a882-4cec-9d51-6a31f146f8ba)](https://clipchamp.com/watch/jNvEGflqiOx)
+[![Project video](https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/7a/35/f4/7a35f461-4b9c-564e-1ac2-035d65892cda/AppIcon-0-1x_U007emarketing-0-10-0-sRGB-85-220.png/1200x630wa.png)](https://clipchamp.com/watch/jNvEGflqiOx)
