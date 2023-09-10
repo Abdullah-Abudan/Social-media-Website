@@ -17,14 +17,14 @@ function getPostDetailes() {
           <div class="card shadow-sm">
             <div class="card-header bg-transparent d-flex align-items-center gap-2">
               <img src="${
-                post.author.profile_image
+                typeof post.author.profile_image == "object" ? "" : post.author.profile_image
               }" alt="user" width="50px" height="50px" class="border border-2 rounded-circle p-1">
               <span class="text-decoration-none fw-bold user-select-none">@${
                 post.author.username
               }</span>
               </div>
               <div class="card-body cursor-pointer">
-                <img src="${post.image}" height="10px" class="img-thumbnail">
+                <img src="${typeof post.image == "object" ? "": post.image}" height="10px" class="img-thumbnail">
                 <h6 class="pt-2 text-dark-emphasis">${post.created_at}</h6>
                 <h5>${post.title ? post.title : ""}</h5>
                 <p>${post.body}</p>

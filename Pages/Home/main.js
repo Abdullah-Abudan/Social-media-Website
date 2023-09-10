@@ -11,6 +11,8 @@ function getPosts(page = 1) {
       console.log(posts);
       LAST_PAGE = response.data.meta.last_page;
       posts.map((post) => {
+        console.log(typeof post.image); // object == no image >> string == exist image
+
         // show or hide (edit) button
         const isMyPost = GetCurrentUser().id == post.author.id;
         let EditButton = ``;
@@ -43,7 +45,7 @@ function getPosts(page = 1) {
                 
                 <div onclick="UserProfile(${post.author.id})"> 
                 <img src="${
-                  post.author.profile_image
+                  typeof post.author.profile_image == "object" ? "" : post.author.profile_image
                 }" alt="user" width="50px" height="50px" class="border border-2 rounded-circle p-1 cursor-pointer">
                   <span class="text-decoration-none fw-bold user-select-none cursor-pointer">@${
                     post.author.username
@@ -61,8 +63,8 @@ function getPosts(page = 1) {
                     post.id
                   })">
                     <img src="${
-                      post.image
-                    }" height="10px" class="img-thumbnail">
+                     typeof post.image == "object" ? "": post.image
+                    }" class="img-thumbnail">
                     <h6 class="pt-2 text-dark-emphasis">${post.created_at}</h6>
                     <h5>${post.title ? post.title : ""}</h5>
                     <p>${post.body}</p>
